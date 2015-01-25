@@ -23,11 +23,11 @@ activity for each window sample. Its range is from 1 to 30.
 In the next step the the test and training sets in wide format are merged in two
 steps. First the test labels, the test subjects and test set are merged as well
 as the train labels, the train subjects and train set. In the second step the 
-merged two sets, called setTest and setTrainm are merged to form a combined set
+merged two sets, called setTest and setTrain are merged to form a combined set
 of test and traing variables. It is called setMerged.
 
 In the following steps the columns are named. The first two columns representing 
-the label and subject are given the names "TestLabel" and "Subject" 
+the label and subject are given the names "testlabel" and "subject" 
 respectively. The remaining 561 vaiables are given the names of the variables 
 listed in the features.txt file. Some of the variables have identical names. These 
 variables are removed immediately since they are not needed anyhow.
@@ -42,7 +42,7 @@ mgsub takes a vector of search terms and a vector of replacements.
 
 In the following step the variable names to be used in the tidy set is updated 
 to appropriately label the data set with descriptive variable names. "-" is
-replaced with "_" and the "()" removed from the original names provided earlier 
+removed and the "()" removed from the original names provided earlier 
 from the features.txt file.
 
 In the next to final step an independent tidy data set, called setMean, with 

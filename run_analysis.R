@@ -19,7 +19,7 @@ setMerged <- rbind(setTest, setTrain)
 
 # Read the features.txt file with variable names 
 testNames <- read.table("./UCI HAR Dataset/features.txt", header = FALSE,sep= "")
-colnames(setMerged) <- c("TestLabel", "Subject", as.vector(testNames[,2]))
+colnames(setMerged) <- c("testlabel", "subject", as.vector(testNames[,2]))
 # Remove variables with the same name. They are not measurements on the mean 
 # and standard deviation and could therefore be removed   
 setMerged <- subset(setMerged, select = !duplicated(testNames[,2]))
@@ -36,12 +36,12 @@ activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt", header = F
 setMergedMeanStd[,1] <- mgsub(activityLabels[,1],activityLabels[,2],setMergedMeanStd[,1])
 
 # Label the data set with descriptive variable names
-colnames(setMergedMeanStd) <- gsub("-","_",colnames(setMergedMeanStd))
+colnames(setMergedMeanStd) <- gsub("-","",colnames(setMergedMeanStd))
 colnames(setMergedMeanStd) <- gsub("[()]", "", colnames(setMergedMeanStd))
 
 # Create an independent tidy data set with 
 # the average of each variable for each activity and each subject 
-setMean <- summarise_each(group_by(setMergedMeanStd,TestLabel,Subject), funs(mean))
+setMean <- summarise_each(group_by(setMergedMeanStd,testlabel,subject), funs(mean))
 
 # Upload data set as a txt file
 write.table(setMean, file = "./tidy.txt", row.names = FALSE,sep= " ")
